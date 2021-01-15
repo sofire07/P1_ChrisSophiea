@@ -1,0 +1,87 @@
+﻿@model Models.ViewModels.DetailVM
+@{ int qty = 1; }
+@{
+    ViewData["Title"] = Model.Inventory.Item1.ItemName;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using Utility; 
+<div class="">
+    <input asp-for="@Model.Inventory.InventoryId" hidden />
+    <form method="post">
+        <div class="container backgroundWhite pt-4">
+            <div class="card border-0 rounded">
+                <div class="card-header bg-dark text-light ml-0 row container" style="border-radius: 0px;">
+                    <div class="col-12 col-md-6">
+                        <h1 class="text-primary">@Model.Inventory.Item1.ItemName</h1>
+                    </div>
+                    <div class="col-12 col-md-6 text-md-right">
+                        <h1 class="text-warning" style="font-family: Impact;">@((Model.Inventory.Item1.ItemPrice).ToString("c"))</h1>
+                    </div>
+                </div>
+                <div class="card-body bg-secondary">
+                    <div class="container p-2">
+                        <div class="row">
+                            <div class="col-12 col-lg-4 p-1 text-center">
+                                <img src="@WC.ImagePath@Model.Inventory.Item1.ItemImage" width="100%" class="rounded" />
+                            </div>
+                            <div class="col-12 col-lg-8">
+                                <div class="row pl-3">
+
+                                    <div class="col-12">
+                                        <span class="badge p-3 border" style="background-color:lavenderblush">@Model.Inventory.Item1.ItemCategory.CategoryName</span>
+                                        <span class="badge p-3 border" style="background-color:azure">In Stock: @Model.Inventory.InventoryAmount</span>
+                                        <h3 class="text-success"></h3>
+
+                                        <p>@Model.Inventory.Item1.ItemDescription.Replace("<p>", "").Replace("</p>", "")</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer bg-dark">
+                    @if (!@Model.ExistsInCart)
+                    {
+                        <div class="row text-light">
+                            <div class="col-3 text-left pb-2 form-group">
+                                <label>Select Quantity:</label>
+                                <input asp-for="@qty" class="form-control" type="number" min="1" max="@Model.Inventory.InventoryAmount" />
+                            </div>
+                        </div>
+                    }
+                    <div class="row">
+                        <div class="col-12 col-md-6 p-1 ">
+                            @if (@Model.ExistsInCart)
+                            {
+                                <button asp-action="RemoveFromCart" asp-route-id="@Model.Inventory.InventoryId" asp-route-qty="@qty" type="submit" class="btn btn-warning btn-square form-control btn-lg" style="height:50px;">Remove from Cart</button>
+                            }
+                            else
+                            {
+                                <button type="submit" class="btn btn-info form-control btn-lg" style="height:50px;">Add to Cart</button>
+                            }
+                        </div>
+                        <div class="col-12 col-md-6  p-1">
+                            <a asp-action="Index" asp-route-id="@Model.Inventory.Store1Id" class="btn btn-success btn-square form-control btn-lg" style="height:50px;"><i class="fas fa-arrow-left"></i>&nbsp;Back to List</a>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts{
+
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+    <script>
+        $("[type='number']").keypress(function (evt) {
+            evt.preventDefault();
+        });
+    </script>
+}
+

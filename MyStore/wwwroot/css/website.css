@@ -1,0 +1,24 @@
+﻿@font-face {
+    font-family: 'Games';
+    src: url('Games.ttf');
+}
+
+th {
+    font-family: Games;
+}
+
+nav {
+    font-family: Games;
+}
+h1,h2,h3,h4 {
+    font-family: Games;
+}
+
+.filterbutton {
+    float: right;
+    margin-right: 6px;
+    margin-top: -20px;
+    position: relative;
+    z-index: 2;
+    color: black;
+}

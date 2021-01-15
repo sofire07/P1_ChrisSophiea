@@ -1,0 +1,12 @@
+C:\Users\csoph\Desktop\Revature\Practice\mystorefuckedup\Utility\bin\Debug\net5.0\Utility.deps.json
+C:\Users\csoph\Desktop\Revature\Practice\mystorefuckedup\Utility\bin\Debug\net5.0\Utility.dll
+C:\Users\csoph\Desktop\Revature\Practice\mystorefuckedup\Utility\bin\Debug\net5.0\ref\Utility.dll
+C:\Users\csoph\Desktop\Revature\Practice\mystorefuckedup\Utility\bin\Debug\net5.0\Utility.pdb
+C:\Users\csoph\Desktop\Revature\Practice\mystorefuckedup\Utility\obj\Debug\net5.0\Utility.csprojAssemblyReference.cache
+C:\Users\csoph\Desktop\Revature\Practice\mystorefuckedup\Utility\obj\Debug\net5.0\Utility.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\csoph\Desktop\Revature\Practice\mystorefuckedup\Utility\obj\Debug\net5.0\Utility.AssemblyInfoInputs.cache
+C:\Users\csoph\Desktop\Revature\Practice\mystorefuckedup\Utility\obj\Debug\net5.0\Utility.AssemblyInfo.cs
+C:\Users\csoph\Desktop\Revature\Practice\mystorefuckedup\Utility\obj\Debug\net5.0\Utility.csproj.CoreCompileInputs.cache
+C:\Users\csoph\Desktop\Revature\Practice\mystorefuckedup\Utility\obj\Debug\net5.0\Utility.dll
+C:\Users\csoph\Desktop\Revature\Practice\mystorefuckedup\Utility\obj\Debug\net5.0\ref\Utility.dll
+C:\Users\csoph\Desktop\Revature\Practice\mystorefuckedup\Utility\obj\Debug\net5.0\Utility.pdb

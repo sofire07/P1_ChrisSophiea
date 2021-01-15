@@ -1,0 +1,98 @@
+﻿@using Microsoft.AspNetCore.Http
+@using Utility
+@inject IHttpContextAccessor HttpContextAccessor
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - FuncoLand</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/website.css" />
+    <link rel="stylesheet" href="~/fontawesome/css/all.css" />
+</head>
+<body style="background-color: #295a48">
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark border-bottom box-shadow" style="background-color: #306853">
+
+            <div class="container">
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+                    <img src="/images/logo.png" width="150" height="40" alt="">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        @if (User.IsInRole(WC.AdminRole))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Content Management
+                                </a>
+                                <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+                                    <a class="nav-link" asp-area="" asp-controller="ItemCategory" asp-action="Index">Item Categories</a>
+                                    <a class="nav-link" asp-area="" asp-controller="Item" asp-action="Index">Items</a>
+                                    <a class="nav-link" asp-area="" asp-controller="Store" asp-action="Index">Stores</a>
+                                    <a class="nav-link" asp-area="" asp-controller="Inventory" asp-action="Index">Inventories</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="nav-link" asp-area"" asp-controller="User" asp-action="Index">Users</a>
+                                    <a class="nav-link" asp-area="Identity" asp-page="/Account/Register">Create Admin User</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="nav-link" asp-area="" asp-controller="User" asp-action="ViewPurchases" asp-route-id="">Orders</a>
+                                </div>
+                            </li>
+                        }
+                        else if (User.IsInRole(WC.CustomerRole))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="User" asp-action="ViewPurchases">Order History</a>
+                            </li>
+                        }
+                        <li>
+                            @if (HttpContextAccessor.HttpContext.Session.Get<List<ShoppingCart>>(WC.SessionCart) != null)
+                            {
+                                <a asp-action="Index" asp-controller="Cart" class="nav-link">
+                                    @{
+                                        var count = HttpContextAccessor.HttpContext.Session.Get<List<ShoppingCart>>(WC.SessionCart).Count();
+                                    }
+                                    <i class="fas fa-shopping-cart"></i>&nbsp;( @count )
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="#" class="nav-link">
+                                    <i class="fas fa-shopping-cart"></i>&nbsp;( 0 )
+                                </a>
+                            }
+                        </li>
+                    </ul>
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+        <img src="~/images/banner.png" style="width:100%" class="pb-3" />
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="footer text-muted">
+        <div class="container">
+            &copy; 2021 - FuncoLand - <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

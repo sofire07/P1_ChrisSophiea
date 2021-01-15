@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Models.Store>
+    @{
+    ViewData["Title"] = "Stores";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <div class="container p-3">
+        <div class="row pt-4">
+            <div class="col-6">
+                <h2 class="text-success">Store List</h2>
+            </div>
+            <div class="col-6">
+                <a asp-controller="Store" asp-action="Create" class="btn btn-primary float-right">Create New Store</a>
+            </div>
+        </div>
+        <br /><br />
+
+        @if (Model.Count() > 0)
+    {
+        <table class="table table-striped table-dark" style="width: 100%; border-radius: 10px;">
+            <thead class="text-primary">
+                <tr>
+                    <th>
+                        Store ID
+                    </th>
+                    <th>
+                        Address
+                    </th>
+                    <th>
+                        Phone Number
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var obj in Model)
+                {
+                <tr>
+                    <td width="10%">@obj.StoreId</td>
+                    <td width="45%">@obj.StoreAddress</td>
+                    <td width="25%">@obj.PhoneNumber</td>
+                    <td class="text-center">
+                        <div class="w-75 btn-group" role="group">
+                            <a asp-route-id="@obj.StoreId" asp-action="Edit" class="btn btn-primary mx-2">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a asp-route-id="@obj.StoreId" asp-action="Delete" class="btn btn-danger mx-2">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No items exist.</p>
+    }
+    </div>
+

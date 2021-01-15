@@ -1,0 +1,101 @@
+﻿@model Models.ViewModels.InventoryVM
+@using System.Text.RegularExpressions;
+@{
+    ViewData["Title"] = "Inventories";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-success">Inventory List</h2>
+        </div>
+        <div class="col-6">
+            <a asp-controller="Inventory" asp-action="Create" class="btn btn-primary float-right">Create New Inventory</a>
+        </div>
+    </div>
+    <div class="text-center pt-4">
+        <button class="btn btn-danger filter-button" data-filter="all">All</button>
+        @foreach (var obj in Model.Stores)
+        {
+            <button class="btn btn-outline-light btn-secondary filter-button" data-filter="@obj.StoreId">
+                @obj.StoreAddress
+            </button>
+        }
+    </div>
+    <br/>
+    <div class="row">
+        @if (Model.Inventories.Count() > 0)
+        {
+            <table class="table table-striped table-dark" style="width: 100%; border-radius: 10px;">
+                <thead class="text-primary">
+                    <tr>
+                        <th>
+                            Store ID
+                        <th>
+                            Store Address
+                        </th>
+                        <th>
+                            Item ID
+                        </th>
+                        <th>
+                            Item Name
+                        </th>
+                        <th>
+                            Item Qty
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var obj in Model.Inventories)
+                    {
+                        <tr class="filter @obj.Store1Id">
+                            <td width="10%">@obj.Store1Id</td>
+                            <td width="25%">@obj.Store1.StoreAddress</td>
+                            <td width="10%">@obj.Item1Id</td>
+                            <td width="25%">@obj.Item1.ItemName</td>
+                            <td width="10%">@obj.InventoryAmount</td>
+                            <td class="text-center">
+                                <div class="w-75 btn-group" role="group">
+                                    <a asp-route-id="@obj.InventoryId" asp-action="Edit" class="btn btn-primary mx-2">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a asp-route-id="@obj.InventoryId" asp-action="Delete" class="btn btn-danger mx-2">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>No items exist.</p>
+        }
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+
+            $(".filter-button").click(function () {
+
+                var value = $(this).attr('data-filter');
+                if (value == "all") {
+                    $('.filter').show('1000');
+                }
+                else {
+                    $(".filter").not('.' + value).hide('3000');
+                    $('.filter').filter('.' + value).show('3000');
+
+                }
+            });
+
+        });
+    </script>
+}
+

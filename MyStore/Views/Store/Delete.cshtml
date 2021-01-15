@@ -1,0 +1,52 @@
+﻿@model Models.Store
+@{
+    ViewData["Title"] = "Delete Store";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form method="post">
+    <input asp-for="StoreId" hidden />
+    <div class="bg-dark p-3" style="border-radius:10px">
+        <div class="form-group row">
+            <h2 class="text-info pl-3">Delete Store</h2>
+        </div>
+        <div class="row text-light">
+            <div class="col-8">
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="StoreAddress"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="StoreAddress" disabled class="form-control" />
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="PhoneNumber"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="PhoneNumber" disabled class="form-control" />
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <div class="col-8 offset-4 row">
+
+                        <div class="col">
+                            <input type="submit" asp-route-id="@Model.StoreId" class="btn btn-danger w-100" value="Delete" asp-action="DeletePost" />
+                        </div>
+                        <div class="col">
+                            <a asp-action="Index" class="btn btn-success w-100"><i class="fas fa-arrow-left"></i>&nbsp;Back</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                @* Keep this empty *@
+            </div>
+        </div>
+
+    </div>
+</form>
+

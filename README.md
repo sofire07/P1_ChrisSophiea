@@ -17,7 +17,7 @@ This project is an ASP.NET Core MVC project that simulates a video-game store. A
 - Session saves user and cart info across views
 
 # Getting Started
-- git clone
+- git clone https://github.com/sofire07/P1_ChrisSophiea.git
 
 # Usage
 - https://imgur.com/a/CabEuAI

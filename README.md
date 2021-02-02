@@ -14,11 +14,10 @@ This project is an ASP.NET Core MVC project that simulates a video-game store. A
 
 # Features
 - Authentication using ASP.NET Identity Framework with Identity Roles (Admin and User)
-- Session saves user and cart infro across views
+- Session saves user and cart info across views
 
 # Getting Started
-
-
+- git clone
 
 # Usage
-Here, you instruct other people on how to use your project after they’ve installed it. This would also be a good place to include screenshots of your project in action.
+- https://imgur.com/a/CabEuAI
